@@ -48,10 +48,11 @@ namespace Colegio_PacataD3
             app.UseRouting();
 
             app.UseCors(options => options
-                //  .WithOrigins(new[] { "urls permitidos"})
+                //.WithOrigins(new[] { "http://localhost:3000/" })
+                .AllowAnyOrigin()
                 .AllowAnyHeader()
                 .AllowAnyMethod()
-                .AllowCredentials()
+                //.AllowCredentials()
             );
 
             app.UseAuthorization();
