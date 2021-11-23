@@ -14,7 +14,7 @@ namespace Colegio_PacataD3.Controllers
     [Route("api/authentication")]
     [ApiController]
     public class AuthController : Controller
-    {
+    {   
 
         private readonly IUserRepository _repository;
         private readonly JwtService _jwtService;
