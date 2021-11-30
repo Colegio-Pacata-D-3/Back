@@ -52,7 +52,7 @@ namespace Colegio_PacataD3.Data
         {
             _context.Entry(user).State = EntityState.Modified;
             _context.SaveChangesAsync();
-            return user;
+            return user;    
         }
         public User PostUser(User user)
         {
