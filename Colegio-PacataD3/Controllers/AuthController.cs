@@ -31,8 +31,11 @@ namespace Colegio_PacataD3.Controllers
             var user = new User
             {
                 Name = dto.Name,
+                LastName = dto.LastName,
+                Birth = dto.Birth,
                 Email = dto.Email,
-                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password)
+                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                NumberReference = dto.NumberReference
             };
             return Created("success", _repository.Create(user));
         } 
