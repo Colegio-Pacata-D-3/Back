@@ -22,6 +22,12 @@ namespace Colegio_PacataD3.Data
             user.Id = _context.SaveChanges();
             return user;
         }
+        public Note CreateNote(Note note)
+        {
+            _context.Notes.Add(note);
+            note.Id = _context.SaveChanges();
+            return note;
+        }
 
         public User GetByEmail(string email)
         {
@@ -37,9 +43,13 @@ namespace Colegio_PacataD3.Data
             return await _context.Users.Select(x => new User()
             {
                 Id = x.Id,
+                Ci= x.Ci,
                 Name = x.Name,
                 Email = x.Email,
-                Password = x.Password
+                Password = x.Password,
+                Course = x.Course,
+                Rol = x.Rol,
+                NumberReference = x.NumberReference
 
             }).ToListAsync();
         }

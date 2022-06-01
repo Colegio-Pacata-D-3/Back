@@ -30,11 +30,14 @@ namespace Colegio_PacataD3.Controllers
         {
             var user = new User
             {
+                Ci= dto.Ci,
                 Name = dto.Name,
                 LastName = dto.LastName,
                 Birth = dto.Birth,
                 Email = dto.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                Course = dto.Course,
+                Rol = dto.Rol,
                 NumberReference = dto.NumberReference
             };
             return Created("success", _repository.Create(user));
@@ -57,7 +60,8 @@ namespace Colegio_PacataD3.Controllers
             return Ok(new{
                 message = "success",
                 name= user.Name,
-                email=user.Email
+                email=user.Email,
+                rol=user.Rol
                 });
         }
 

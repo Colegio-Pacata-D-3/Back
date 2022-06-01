@@ -29,9 +29,15 @@ namespace Colegio_PacataD3.Controllers
             return await _context.Users.Select(x => new User()
             {
                 Id = x.Id,
+                Ci= x.Ci,
                 Name = x.Name,
+                LastName = x.LastName,
                 Email = x.Email,
-                Password = x.Password
+                Birth = x.Birth,
+                Password = x.Password,
+                Course = x.Course,
+                Rol = x.Rol,
+                NumberReference = x.NumberReference
             }).ToListAsync();
         }
 
