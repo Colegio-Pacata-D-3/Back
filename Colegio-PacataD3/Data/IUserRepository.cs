@@ -11,6 +11,7 @@ namespace Colegio_PacataD3.Data
     {
         User Create(User user);
         Note CreateNote(Note note);
+        Subject CreateSubject(Subject subject);
         User GetByEmail(string email);
         User GetById(int id);
         Task<ActionResult<IEnumerable<User>>> GetUsers();

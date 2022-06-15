@@ -28,6 +28,12 @@ namespace Colegio_PacataD3.Data
             note.Id = _context.SaveChanges();
             return note;
         }
+        public Subject CreateSubject(Subject subject)
+        {
+            _context.Subjects.Add(subject);
+            subject.Id = _context.SaveChanges();
+            return subject;
+        }
 
         public User GetByEmail(string email)
         {
