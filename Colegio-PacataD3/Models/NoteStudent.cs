@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Colegio_PacataD3.Dto
+namespace Colegio_PacataD3.Models
 {
-    public class NoteRegister
+    public class NoteStudent
     {
+        public int Id { get; set; }
         public int IdEst { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
         public string Area { get; set; }
         public int Grade { get; set; }
         public int Trimester { get; set; }

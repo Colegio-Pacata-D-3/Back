@@ -33,6 +33,7 @@ namespace Colegio_PacataD3.Controllers
                 Id = x.Id,
                 IdEst = x.IdEst,
                 Area = x.Area,
+                Grade = x.Grade,
                 Trimester = x.Trimester,
                 Ser = x.Ser,
                 Saber1 = x.Saber1,
@@ -47,7 +48,67 @@ namespace Colegio_PacataD3.Controllers
                 SerE = x.SerE,
                 DecidirE = x.DecidirE
             }).ToListAsync();
+            
         }
+        [HttpGet("{grade}/{trimester}/{subject}")]
+        public async Task<ActionResult<IEnumerable<NoteStudent>>> GetNotesByGrade(int grade,int trimester, string subject)
+        {
+
+             var lista = await _context.Notes.Select(x => new NoteStudent()
+            {
+                Id = x.Id,
+                IdEst = x.IdEst,
+                Area = x.Area,
+                Grade = x.Grade,
+                Trimester = x.Trimester,
+                Ser = x.Ser,
+                Saber1 = x.Saber1,
+                Saber2 = x.Saber2,
+                Saber3 = x.Saber3,
+                Saber4 = x.Saber4,
+                Hacer1 = x.Hacer1,
+                Hacer2 = x.Hacer2,
+                Hacer3 = x.Hacer3,
+                Hacer4 = x.Hacer4,
+                Decidir = x.Decidir,
+                SerE = x.SerE,
+                DecidirE = x.DecidirE
+            }).Where(x => x.Area.Contains(subject)&&x.Trimester==trimester&&x.Grade==grade).ToListAsync();
+            for (int i = 0; i < lista.Count; i++)
+            {
+                User student = await _context.Users.FindAsync(lista[i].IdEst);
+                lista[i].Name = student.Name;
+                lista[i].LastName = student.LastName;
+            }
+            return lista;
+        }
+        [HttpGet("{id}/{trimester}")]
+        public async Task<ActionResult<IEnumerable<Note>>> GetNotesByStudent(int id, int trimester)
+        {
+
+            var lista = await _context.Notes.Select(x => new Note()
+            {
+                Id = x.Id,
+                IdEst = x.IdEst,
+                Area = x.Area,
+                Grade = x.Grade,
+                Trimester = x.Trimester,
+                Ser = x.Ser,
+                Saber1 = x.Saber1,
+                Saber2 = x.Saber2,
+                Saber3 = x.Saber3,
+                Saber4 = x.Saber4,
+                Hacer1 = x.Hacer1,
+                Hacer2 = x.Hacer2,
+                Hacer3 = x.Hacer3,
+                Hacer4 = x.Hacer4,
+                Decidir = x.Decidir,
+                SerE = x.SerE,
+                DecidirE = x.DecidirE
+            }).Where(x => x.IdEst == id && x.Trimester == trimester).ToListAsync();
+            return lista;
+        }
+
 
         // GET: api/User/5
         [HttpGet("{id}")]
@@ -103,6 +164,7 @@ namespace Colegio_PacataD3.Controllers
                 Id=x.Id,
                 IdEst = x.IdEst,
                 Area = x.Area,
+                Grade = x.Grade,
                 Trimester = x.Trimester,
                 Ser = x.Ser,
                 Saber1 = x.Saber1,

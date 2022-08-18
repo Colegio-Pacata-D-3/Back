@@ -58,6 +58,7 @@ namespace Colegio_PacataD3.Controllers
                 HttpOnly = true
             });
             return Ok(new{
+                id= user.Id,
                 message = "success",
                 name= user.Name,
                 email=user.Email,

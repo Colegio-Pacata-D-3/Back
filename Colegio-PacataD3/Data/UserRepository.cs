@@ -19,7 +19,47 @@ namespace Colegio_PacataD3.Data
         public User Create(User user)
         {
             _context.Users.Add(user);
-            user.Id = _context.SaveChanges();
+            _context.SaveChanges();
+            Note n1 = new Note();
+            n1.IdEst = user.Id;
+            n1.Grade = Int32.Parse(user.Course);
+            string[] materias;
+            string[] materias2;
+            materias = new string[13] { "Lenguaje", "Lengua extranjera", "Ciencias sociales","Educacion fisica", "Educacion Musical","Artes plasticas", "Computacion", "Matematicas","Ciencias naturales", "Fisica", "Quimica", "Filosofia", "Religion"  };
+            materias2 = new string[13] { "Lenguaje", "Lengua extranjera", "Ciencias sociales", "Educacion fisica", "Educacion Musical", "Artes plasticas", "Computacion", "Matematicas", "Ciencias naturales", "Fisica", "Quimica", "Filosofia", "Religion" };
+            
+            if (user.Rol.CompareTo("estudiante")==0)
+            {
+                if (Int32.Parse(user.Course) <=2)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        n1.Trimester = j + 1;
+                        for (int i = 0; i < 13; i++)
+                        {
+                            n1.Area = materias2[i];
+                            n1.Id = 0;
+                            CreateNote(n1);
+                        }
+
+                    }
+                   
+                }
+                else
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        n1.Trimester = j + 1;
+                        for (int i = 0; i < 13; i++)
+                        {
+                            n1.Area = materias[i];
+                            CreateNote(n1);
+                        }
+                    }
+                    
+                }
+            }
+
             return user;
         }
         public Note CreateNote(Note note)

@@ -40,6 +40,25 @@ namespace Colegio_PacataD3.Controllers
                 NumberReference = x.NumberReference
             }).ToListAsync();
         }
+        [HttpGet("{grade}/estudiante")]
+        public async Task<ActionResult<IEnumerable<User>>> GetUsersByGrade(int grade)
+        {
+            string n1= Convert.ToString(grade);
+            return await _context.Users.Select(x => new User()
+            {
+                Id = x.Id,
+                Ci = x.Ci,
+                Name = x.Name,
+                LastName = x.LastName,
+                Email = x.Email,
+                Birth = x.Birth,
+                Password = x.Password,
+                Course = x.Course,
+                Rol = x.Rol,
+                NumberReference = x.NumberReference
+            }).Where(x => x.Course.Contains(n1) && x.Rol.Contains("estudiante")).ToListAsync();
+        }
+
 
         // GET: api/User/5
         [HttpGet("{id}")]

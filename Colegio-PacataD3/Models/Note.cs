@@ -10,6 +10,7 @@ namespace Colegio_PacataD3.Models
         public int Id { get; set; }
         public int IdEst { get; set; }
         public string Area { get; set; }
+        public int Grade { get; set; }
         public int Trimester { get; set; }
         public int Ser { get; set; }
         public int Saber1 { get; set; }
